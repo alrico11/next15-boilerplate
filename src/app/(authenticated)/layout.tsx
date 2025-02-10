@@ -4,7 +4,7 @@ import { AppHeader } from '@/shared/components/appHeader';
 import { AppSidebar } from '@/shared/components/appSideBar';
 import { useHydration } from '@/shared/hooks';
 import { useTheme } from 'next-themes';
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -12,8 +12,10 @@ interface RootLayoutProps {
 
 export default function LayoutAuthenticated({ children }: Readonly<RootLayoutProps>) {
   const hyd = useHydration()
-  const { theme } = useTheme()
+  const { theme, setTheme, systemTheme } = useTheme()
+  useEffect(() => { systemTheme && setTheme(systemTheme) }, [systemTheme])
   if (!hyd) return null
+  
   return (
     <div>
       <SidebarProvider>

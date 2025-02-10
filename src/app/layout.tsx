@@ -19,7 +19,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
 
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={cn(inter.className, "h-screen w-screen overflow-hidden flex flex-col")}>
         <Provider>
           <App>
