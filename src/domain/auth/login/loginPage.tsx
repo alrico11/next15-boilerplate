@@ -11,7 +11,7 @@ import { useState } from "react";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
-  const { systemTheme } = useTheme()
+  const { theme } = useTheme()
   const router = useRouter()
 
   return (
@@ -25,11 +25,11 @@ export default function LoginPage() {
               <div className="flex grid-cols-2 gap-4 justify-start items-center">
                 <div>
                   <Image
-                    src={systemTheme === 'dark' ? '/images/icon-dark.png' : '/images/icon-light.png'}
+                    src={theme === 'dark' ? '/images/icon-dark.png' : '/images/icon-light.png'}
                     alt="KTB Logo"
                     className="w-20"
-                    width={80} // or any appropriate value
-                    height={80} // or any appropriate value
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div >

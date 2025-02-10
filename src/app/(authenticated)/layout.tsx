@@ -2,6 +2,8 @@
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 import { AppHeader } from '@/shared/components/appHeader';
 import { AppSidebar } from '@/shared/components/appSideBar';
+import { useHydration } from '@/shared/hooks';
+import { useTheme } from 'next-themes';
 import { ReactNode } from 'react';
 
 interface RootLayoutProps {
@@ -9,13 +11,18 @@ interface RootLayoutProps {
 }
 
 export default function LayoutAuthenticated({ children }: Readonly<RootLayoutProps>) {
+  const hyd = useHydration()
+  const { theme } = useTheme()
+  if (!hyd) return null
   return (
     <div>
       <SidebarProvider>
         <AppSidebar />
         <SidebarInset>
           <AppHeader />
-          {children}
+          <div className={`${theme === 'dark' ? 'bg-black/50 text-foreground' : 'bg-black/5 text-background'}  flex-1`}>
+            {children}
+          </div>
         </SidebarInset>
       </SidebarProvider>
     </div>

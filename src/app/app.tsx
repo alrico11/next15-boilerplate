@@ -14,7 +14,7 @@ export const App = ({ children }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ReactQueryDevtools initialIsOpen={false} />
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange >
         {children}
       </ThemeProvider>
     </QueryClientProvider>

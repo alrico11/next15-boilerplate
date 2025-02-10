@@ -1,10 +1,6 @@
 "use client";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button"; // Gantilah SidebarMenuButton dengan Button
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,14 +10,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {
-  BadgeCheck,
-  Bell,
-  ChevronDown,
-  CreditCard,
-  LogOut,
-  Sparkles
-} from "lucide-react";
+import { BadgeCheck, ChevronDown, LogOut, Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 
 export function NavUser({
   user,
@@ -32,6 +22,10 @@ export function NavUser({
     avatar: string;
   };
 }) {
+  const { theme, setTheme } = useTheme();
+
+  const onChangeTheme = () => { setTheme(theme === "dark" ? "light" : "dark"); };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -56,9 +50,9 @@ export function NavUser({
       </DropdownMenuTrigger>
       <DropdownMenuContent
         className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-        side="right"
+        side="bottom"
         align="end"
-        sideOffset={4}
+        sideOffset={10}
       >
         <DropdownMenuLabel className="p-0 font-normal">
           <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
@@ -75,25 +69,21 @@ export function NavUser({
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           <DropdownMenuItem>
-            <Sparkles />
-            Upgrade to Pro
+            <BadgeCheck />
+            Change Password
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <BadgeCheck />
-            Account
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <CreditCard />
-            Billing
-          </DropdownMenuItem>
-          <DropdownMenuItem>
-            <Bell />
-            Notifications
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        <DropdownMenuItem onClick={onChangeTheme}>
+          <div className="flex items-center gap-2">
+            {theme === "dark" ? (
+              <Sun className="size-4" />
+            ) : (
+              <Moon className="size-4" />
+            )}
+            Switch Theme
+          </div>
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           <LogOut />

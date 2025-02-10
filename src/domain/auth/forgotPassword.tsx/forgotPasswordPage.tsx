@@ -9,25 +9,25 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function ForgotPasswordPage() {
-  const { systemTheme } = useTheme()
+  const { theme } = useTheme()
   const router = useRouter()
   return (
     <div className="flex h-screen w-full">
       <div className="bg-white hidden bg-[url(/images/fuso.png)] bg-center md:flex bg-cover flex-1 items-center justify-center">
       </div>
 
-      <div className="mx-4 4flex flex-1 items-center justify-center">
+      <div className="mx-4 flex flex-1 items-center justify-center">
         <Card className="w-full max-w-xl min-w-lg shadow-xl p-8">
           <CardContent>
             <div>
               <div className="flex grid-cols-2 gap-4 justify-start items-center">
                 <div>
                   <Image
-                    src={systemTheme === 'dark' ? '/images/icon-dark.png' : '/images/icon-light.png'}
+                    src={theme === 'dark' ? '/images/icon-dark.png' : '/images/icon-light.png'}
                     alt="KTB Logo"
                     className="w-20"
-                    width={80} // or any appropriate value
-                    height={80} // or any appropriate value
+                    width={80}
+                    height={80}
                   />
                 </div>
                 <div >
